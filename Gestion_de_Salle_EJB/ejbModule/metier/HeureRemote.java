@@ -1,5 +1,5 @@
 package metier;
 
-public interface HeureRemote {
+public interface HoraireRemote {
 
 }
