@@ -1,5 +1,6 @@
 package metier;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -21,3 +22,10 @@ public interface SalleRemote {
 	public void setEtat(Long id, Horaire h, Jour j , boolean e);
 	public List<Salle> getSallesVides();
 }
+=======
+
+
+public interface SalleRemote {
+	
+}
+>>>>>>> c37795ed34f928c3e0327e8e34f625867590da9a

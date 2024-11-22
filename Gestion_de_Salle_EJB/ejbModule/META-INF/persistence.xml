@@ -1,11 +1,23 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
 <persistence-unit name="SallesEJB" transaction-type="JTA">
-    <jta-data-source>java:/salles</jta-data-source>
-    <class>metier.entities.Salle</class>
-    <class>metier.entities.Horaire</class>
-    <class>metier.entities.Jour</class>
-    <class>metier.entities.Role</class>
-    <properties>
-        <property name="javax.persistence.schema-generation.database.action" value="none"/>
-    </properties>
+<jta-data-source>java:/salles</jta-data-source>
+<class>metier.entities.Filiere</class>
+<class>metier.entities.Categorie</class>
+<class>metier.entities.Matiere</class>
+<class>metier.entities.User</class>
+<class>metier.entities.Salle</class>
+<class>metier.entities.Role</class>
+<class>metier.entities.Horaire</class>
+<class>metier.entities.Jour</class>
+<class>metier.entities.Liberation</class>
+<class>metier.entities.Reservation</class>
+<properties>
+<property name="javax.persistence.schema-generation.database.action" value="Update"/>
+</properties>
 </persistence-unit>
+</persistence>
