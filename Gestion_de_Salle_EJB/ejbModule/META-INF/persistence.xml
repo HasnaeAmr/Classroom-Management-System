@@ -16,6 +16,7 @@
 <class>metier.entities.Jour</class>
 <class>metier.entities.Liberation</class>
 <class>metier.entities.Reservation</class>
+<class>metier.entities.Journalisation</class>
 <properties>
 <property name="javax.persistence.schema-generation.database.action" value="Update"/>
 </properties>

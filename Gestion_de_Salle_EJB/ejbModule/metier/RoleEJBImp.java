@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import metier.entities.Salle;
+
 
 @Stateless
 @Local(RoleLocal.class)
@@ -19,8 +19,8 @@ public class RoleEJBImp implements RoleRemote, RoleLocal {
     private EntityManager em;
 	
 
-	public List<Role> lisrRoles(){
-		Query req = em.createQuery("select r from role r");
+	public List<Role> listRoles(){
+		Query req = em.createQuery("select r from Role r");
         return req.getResultList();
 	}
 	public Role ajouterRole(Role r) {

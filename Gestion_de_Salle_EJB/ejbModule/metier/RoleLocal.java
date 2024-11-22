@@ -8,7 +8,7 @@ import javax.management.relation.Role;
 @Local
 public interface RoleLocal {
 
-	public List<Role> lisrRoles();
+	public List<Role> listRoles();
 	public Role ajouterRole(Role role);
 	public void getRole(Long id);
 	public void supprimerRole(Long id);
