@@ -1,5 +1,5 @@
 package metier;
 
-public interface HeureLocal {
+public interface HoraireLocal {
 
 }
