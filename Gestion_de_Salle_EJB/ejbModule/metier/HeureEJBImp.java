@@ -1,8 +1,8 @@
 package metier;
 
-public class HeureEJBImp {
+public class HoraireEJBImp {
 
-	public HeureEJBImp() {
+	public HoraireEJBImp() {
 		// TODO Auto-generated constructor stub
 	}
 
