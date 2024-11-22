@@ -1,0 +1,11 @@
+
+<persistence-unit name="SallesEJB" transaction-type="JTA">
+    <jta-data-source>java:/salles</jta-data-source>
+    <class>metier.entities.Salle</class>
+    <class>metier.entities.Horaire</class>
+    <class>metier.entities.Jour</class>
+    <class>metier.entities.Role</class>
+    <properties>
+        <property name="javax.persistence.schema-generation.database.action" value="none"/>
+    </properties>
+</persistence-unit>
