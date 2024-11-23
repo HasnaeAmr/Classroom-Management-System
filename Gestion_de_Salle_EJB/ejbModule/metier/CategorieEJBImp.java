@@ -21,11 +21,7 @@ public class CategorieEJBImp implements CategorieLocal,CategorieRemote {
 	public CategorieEJBImp() {
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public Categorie AddCategorie(Categorie cat) {
-		em.persist(cat);
-		return cat;
-	}
+	
 	@Override
 	public Categorie getCategorie(int id_categorie) {
 		Categorie cat=em.find(Categorie.class, id_categorie);
@@ -37,12 +33,7 @@ public class CategorieEJBImp implements CategorieLocal,CategorieRemote {
 		Query req=em.createQuery("select c from Categorie c");
 		return req.getResultList();
 	}
-	@Override
-	public void setCategorie(int id_categorie,String type_categorie,int nombre_heures) {
-		Categorie cat=em.find(Categorie.class, id_categorie);
-		cat.setType_categorie(type_categorie);
-		cat.setNombre_heures(nombre_heures);
-	}
+
 	@Override
 	public void removeCategorie(int id_categorie) {
 		Categorie cat=em.find(Categorie.class, id_categorie);
