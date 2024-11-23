@@ -1,49 +1,40 @@
 package metier.entities;
 
-import java.io.Serializable;
+import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name="journalisation")
-public class Journalisation implements Serializable{
+public class Journalisation {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_journalisation")
+	private Long id_journalisation;
+	@Column(name="description")
+	private String description;
+	@Column(name="date")
+	private LocalDate date;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public Journalisation(String description) {
+		LocalDate currentDate = LocalDate.now();
+		this.date=currentDate;
+
+		this.description=description + " à " + date;
+	}
 	
-	private int  id_journalisation;
-	private String Description;
-	private Date Date;
+	public String getDescription() {
+		return description;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
 	public Journalisation() {
 		// TODO Auto-generated constructor stub
 	}
-	public Journalisation(int id_journalisation, String description, Date date) {
-		super();
-		this.id_journalisation = id_journalisation;
-		Description = description;
-		Date = date;
-	}
-	public int getId_journalisation() {
-		return id_journalisation;
-	}
-	public void setId_journalisation(int id_journalisation) {
-		this.id_journalisation = id_journalisation;
-	}
-	public String getDescription() {
-		return Description;
-	}
-	public void setDescription(String description) {
-		Description = description;
-	}
-	public Date getDate() {
-		return Date;
-	}
-	public void setDate(Date date) {
-		Date = date;
-	}
-
 }
