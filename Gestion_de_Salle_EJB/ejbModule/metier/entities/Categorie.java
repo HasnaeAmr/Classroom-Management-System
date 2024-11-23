@@ -2,6 +2,7 @@ package metier.entities;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,16 +18,19 @@ public class Categorie implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_categorie;
 	private String type_categorie;
-	private int nombre_heures;
+	
+	
 
+	
+	
 	public Categorie() {
 		// TODO Auto-generated constructor stub
 	}
-	public Categorie(int id_categorie, String type_categorie, int nombre_heures) {
+	public Categorie(int id_categorie, String type_categorie) {
 		super();
 		this.id_categorie = id_categorie;
 		this.type_categorie = type_categorie;
-		this.nombre_heures = nombre_heures;
+		
 	}
 	public int getId_categorie() {
 		return id_categorie;
@@ -44,12 +48,6 @@ public class Categorie implements Serializable {
 		this.type_categorie = type_categorie;
 	}
 
-	public int getNombre_heures() {
-		return nombre_heures;
-	}
-
-	public void setNombre_heures(int nombre_heures) {
-		this.nombre_heures = nombre_heures;
-	}
+	
 
 }
