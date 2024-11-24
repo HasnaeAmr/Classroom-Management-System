@@ -1,5 +1,7 @@
 package metier.entities;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +17,11 @@ public class Filiere {
 	private int id_filiere;
 	private String nom_filiere;
 	private String effectif;
+	
+	 
 
 
+	
 	public Filiere() {
 		// TODO Auto-generated constructor stub
 	}
@@ -48,4 +53,5 @@ public class Filiere {
 	public void setEffectif(String effectif) {
 		this.effectif = effectif;
 	}
+
 }
