@@ -4,18 +4,21 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
+import javax.persistence.Table;
+@Entity
+@Table(name="jour")
 public class Jour implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_jour;
 	@Column(name="nom_jour")
 	private String nom_jour;
-	@OneToMany(mappedBy = "id_horaire")
+	@OneToMany(mappedBy = "jour")
     private List<EtatSalle> etatsSalle;
 	
 	public Jour(String nom_jour) {

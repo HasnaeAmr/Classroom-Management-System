@@ -1,12 +1,14 @@
 package metier.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,9 +19,10 @@ public class Categorie implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_categorie;
+	@Column(name="type_categorie")
 	private String type_categorie;
-	
-	
+	@OneToMany(mappedBy = "categorie")
+    private List<Salle> salles;
 
 	
 	
@@ -30,7 +33,6 @@ public class Categorie implements Serializable {
 		super();
 		this.id_categorie = id_categorie;
 		this.type_categorie = type_categorie;
-		
 	}
 	public int getId_categorie() {
 		return id_categorie;

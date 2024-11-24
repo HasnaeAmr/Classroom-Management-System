@@ -11,5 +11,7 @@ public interface CategorieLocal {
 	
 	public Categorie getCategorie(int id_categorie);
 	public List<Categorie> listCategorie();
+	public void setCategorie(int id_categorie,String type_categorie);
+
 	public void removeCategorie(int id_categorie);
 }

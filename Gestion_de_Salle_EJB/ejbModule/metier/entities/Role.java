@@ -8,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
+@Table(name="role")
 public class Role implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_role;
-	@OneToMany(mappedBy = "id_role") 
+	@OneToMany(mappedBy = "role") 
     private List<User> utilisateurs;
 	@Column(name="nom_role")
 	String nom_role;

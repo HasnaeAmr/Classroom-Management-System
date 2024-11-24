@@ -16,10 +16,12 @@
 <class>metier.entities.Jour</class>
 <class>metier.entities.Liberation</class>
 <class>metier.entities.Reservation</class>
+<class>metier.entities.EtatSlle</class>
+<class>metier.entities.User</class>
 <class>metier.entities.Journalisation</class>
 <class>metier.entities.MatiereFiliereCategorie</class>
 <properties>
-<property name="javax.persistence.schema-generation.database.action" value="Update"/>
+<property name="javax.persistence.schema-generation.database.action" value="update"/>
 </properties>
 </persistence-unit>
 </persistence>
