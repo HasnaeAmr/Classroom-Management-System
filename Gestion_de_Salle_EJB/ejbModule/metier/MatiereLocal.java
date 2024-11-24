@@ -4,10 +4,9 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import metier.entities.Categorie;
-import metier.entities.Filiere;
+
 import metier.entities.Matiere;
-import metier.entities.User;
+
 @Local
 public interface MatiereLocal {
 	

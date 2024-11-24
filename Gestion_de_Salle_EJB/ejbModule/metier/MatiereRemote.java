@@ -4,10 +4,9 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import metier.entities.Categorie;
-import metier.entities.Filiere;
+
 import metier.entities.Matiere;
-import metier.entities.User;
+
 
 @Remote
 public interface MatiereRemote {
