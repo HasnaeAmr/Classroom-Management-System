@@ -6,11 +6,8 @@ import javax.ejb.Local;
 
 import metier.entities.Journalisation;
 
-
-
 @Local
 public interface JournalisationLocal {
-	
 	public List<Journalisation> listJournalisation();
-	public Journalisation addJournalisation(Journalisation journal);
+	public void journaliser(String description);
 }
