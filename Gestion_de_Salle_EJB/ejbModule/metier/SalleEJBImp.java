@@ -20,7 +20,7 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
     private EntityManager em;
 	
 	public List<Salle> listSalles(){
-		Query req = em.createQuery("select s from salle s");
+		Query req = em.createQuery("select s from Salle s");
         return req.getResultList();
 	}
 	public Salle getSalle(Long id) {
@@ -45,7 +45,7 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
 	}
 	
 	public boolean getEtat(Long id, Horaire h, Jour j) {
-		Query req = em.createQuery("SELECT s.etat FROM etat_salle s WHERE s.id_salle = :id AND s.id_horaire = :h AND s.id_jour = :j");
+		Query req = em.createQuery("SELECT s.etat FROM EtatSalle s WHERE s.id_salle = :id AND s.id_horaire = :h AND s.id_jour = :j");
 		req.setParameter("id", id);
         req.setParameter("j", j.getIdJour());
         req.setParameter("h", h.getIdHoraire());
@@ -80,20 +80,27 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
 	}
 
 	public List<Salle> filtreJ(Jour j){
-		Query q = em.createQuery("SELECT *\r\n"
+		Query q = em.createQuery("SELECT *"
 				+ "FROM salle\r\n"
-				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle\r\n"
+				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle"
 				+ "WHERE etat_salle.id_jour=:j") ;
 		q.setParameter("j", j);
 		return q.getResultList();
 	}
 	public List<Salle> filtreH(Horaire h){
-		Query q = em.createQuery("SELECT *\r\n"
-				+ "FROM salle\r\n"
-				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle\r\n"
+		Query q = em.createQuery("SELECT *"
+				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle"
 				+ "WHERE etat_salle.id_horaire=:h") ;
 		q.setParameter("h", h);
 		return q.getResultList();
 	}
 
+	public List<Salle> filtreP(Long id){
+		Query q = em.createQuery("SELECT s " +
+			    "FROM Salle s " + 
+			    "JOIN s.etatSalles es " +
+			    "WHERE es.id_prof = :id AND es.etat = true") ; // true=non vide
+		q.setParameter("id", id);
+		return q.getResultList();
+	}
 }

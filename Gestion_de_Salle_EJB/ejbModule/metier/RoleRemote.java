@@ -7,7 +7,7 @@ import javax.management.relation.Role;
 
 @Remote
 public interface RoleRemote {
-	public List<Role> lisrRoles();
+	public List<Role> listRoles();
 	public Role ajouterRole(Role role);
 	public void getRole(Long id);
 	public void supprimerRole(Long id);

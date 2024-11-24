@@ -38,10 +38,9 @@ public class CategorieEJBImp implements CategorieLocal,CategorieRemote {
 		return req.getResultList();
 	}
 	@Override
-	public void setCategorie(int id_categorie,String type_categorie,int nombre_heures) {
+	public void setCategorie(int id_categorie,String type_categorie) {
 		Categorie cat=em.find(Categorie.class, id_categorie);
 		cat.setType_categorie(type_categorie);
-		cat.setNombre_heures(nombre_heures);
 	}
 	@Override
 	public void removeCategorie(int id_categorie) {

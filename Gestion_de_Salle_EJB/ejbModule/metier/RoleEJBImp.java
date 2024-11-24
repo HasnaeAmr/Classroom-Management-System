@@ -19,7 +19,7 @@ public class RoleEJBImp implements RoleRemote, RoleLocal {
     private EntityManager em;
 	
 
-	public List<Role> lisrRoles(){
+	public List<Role> listRoles(){
 		Query req = em.createQuery("select r from role r");
         return req.getResultList();
 	}

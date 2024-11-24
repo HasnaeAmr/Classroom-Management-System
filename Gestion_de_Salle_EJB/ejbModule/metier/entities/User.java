@@ -17,7 +17,10 @@ public class User {
 	private int id;
 	private String nom;
 	private String mdp;
-
+	@ManyToOne
+	@JoinColumn(name = "id_role")
+	private Role role;
+	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
@@ -52,9 +55,7 @@ public class User {
 		this.mdp = mdp;
 	}
 	
-	 @ManyToOne
-	 @JoinColumn(name="id_role")
-	 private Role role;
+	 
 	 public Role getRole() {return role;}
 	 public void setRole(Role role) {this.role = role;}
 
