@@ -3,11 +3,7 @@ package metier.entities;
 import java.io.Serializable;
 import java.util.List;
 
-<<<<<<< HEAD
 import javax.persistence.Column;
-=======
-
->>>>>>> d3934161c145de4dacb56a9c8c17b1aef201af01
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,14 +21,8 @@ public class Categorie implements Serializable {
 	private int id_categorie;
 	@Column(name="type_categorie")
 	private String type_categorie;
-<<<<<<< HEAD
-
 	@OneToMany(mappedBy = "categorie")
     private List<Salle> salles;
-=======
-	
-	
->>>>>>> d3934161c145de4dacb56a9c8c17b1aef201af01
 
 	
 	
@@ -43,10 +33,6 @@ public class Categorie implements Serializable {
 		super();
 		this.id_categorie = id_categorie;
 		this.type_categorie = type_categorie;
-<<<<<<< HEAD
-=======
-		
->>>>>>> d3934161c145de4dacb56a9c8c17b1aef201af01
 	}
 	public int getId_categorie() {
 		return id_categorie;
