@@ -22,11 +22,7 @@ public class UserEJBImp  implements UserLocal,UserRemote{
 	public UserEJBImp() {
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public User AddUser(User user) {
-		em.persist(user);
-		return user;
-	}
+	
 	@Override
 	public User getUser(int id) {
 		User user=em.find(User.class,id);
@@ -46,11 +42,5 @@ public class UserEJBImp  implements UserLocal,UserRemote{
 		user.setMdp(mdp);
 		user.setRole(role);
 	}
-	@Override
-	public void removeUser(int id) {
-		User user=em.find(User.class, id);
-		em.remove(user);
-		// test:
-		System.out.println("Deleted");
-	}
+	
 }

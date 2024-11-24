@@ -1,13 +1,14 @@
 package metier.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,18 +20,21 @@ public class Matiere implements Serializable {
 	private int id_matiere;
 	private String nom_matiere;
 	
+	@OneToMany(mappedBy = "matiere")
+    private Set<MatiereFiliereCategorie> matiereFiliereCategories = new HashSet<>();
+
+
 	
+
 	public Matiere() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Matiere(int id_matiere, String nom_matiere,Categorie cat,Filiere fi,User user) {
+	public Matiere(int id_matiere, String nom_matiere) {
 		super();
 		this.id_matiere = id_matiere;
 		this.nom_matiere = nom_matiere;
-		this.Cat=cat;
-		this.fi=fi;
-		this.user=user;
+		
 	}
 	public int getId_matiere() {
 		return id_matiere;
@@ -51,23 +55,16 @@ public class Matiere implements Serializable {
 		this.nom_matiere = nom_matiere;
 	}
 	
-	 @ManyToOne
-	 @JoinColumn(name="id_categorie")
-	 private Categorie Cat;
-	 public Categorie getCategorie() {return Cat;}
-	 public void setCategorie(Categorie Cat) {this.Cat = Cat;}
-	 
-	 @ManyToOne
-	 @JoinColumn(name="id_filiere")
-	 private Filiere fi;
-	 public Filiere getFiliere() {return fi;}
-	 public void setFiliere(Filiere fi) {this.fi = fi;}
-	 
-	 @ManyToOne
-	 @JoinColumn(name="id")
-	 private User user;
-	 public User getProf() {return user;}
-	 public void setProf(User user) {this.user = user;}
+	
+
+	public Set<MatiereFiliereCategorie> getMatiereFiliereCategories() {
+			return matiereFiliereCategories;
+		}
+
+	public void setMatiereFiliereCategories(Set<MatiereFiliereCategorie> matiereFiliereCategories) {
+			this.matiereFiliereCategories = matiereFiliereCategories;
+		}
+	
 	 
 
 }

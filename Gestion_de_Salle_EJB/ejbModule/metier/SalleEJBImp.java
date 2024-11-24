@@ -7,8 +7,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import metier.entities.EtatSalle;
 import metier.entities.Horaire;
 import metier.entities.Jour;
 import metier.entities.Salle;
@@ -62,6 +60,14 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
 		updateReq.setParameter("h", h.getIdHoraire());
 		
 	}
+	public List<Salle> getSallesVidesByHoraireNDJour(Horaire h,Jour j){
+		Query q = em.createQuery("SELECT *\r\n"
+				+ "FROM salle\r\n"
+				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle\r\n"
+				+ "WHERE etat_salle.id_horaire=:h and etat_salle.id_jour=:j;"
+				+ "AND etat_salle.etat = false;") ;
+		return q.getResultList();	}
+	
 	public List<Salle> getSallesVides(){
 		Query q = em.createQuery("SELECT *\r\n"
 				+ "FROM salle\r\n"

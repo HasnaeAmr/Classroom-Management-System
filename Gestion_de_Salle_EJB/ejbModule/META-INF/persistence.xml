@@ -16,9 +16,14 @@
 <class>metier.entities.Jour</class>
 <class>metier.entities.Liberation</class>
 <class>metier.entities.Reservation</class>
+<<<<<<< HEAD
 <class>metier.entities.EtatSlle</class>
 <class>metier.entities.User</class>
 <class>metier.entities.Journalisation</class>
+=======
+<class>metier.entities.Journalisation</class>
+<class>metier.entities.MatiereFiliereCategorie</class>
+>>>>>>> d3934161c145de4dacb56a9c8c17b1aef201af01
 <properties>
 <property name="javax.persistence.schema-generation.database.action" value="update"/>
 </properties>

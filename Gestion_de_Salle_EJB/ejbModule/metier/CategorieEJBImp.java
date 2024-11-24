@@ -21,11 +21,7 @@ public class CategorieEJBImp implements CategorieLocal,CategorieRemote {
 	public CategorieEJBImp() {
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public Categorie AddCategorie(Categorie cat) {
-		em.persist(cat);
-		return cat;
-	}
+	
 	@Override
 	public Categorie getCategorie(int id_categorie) {
 		Categorie cat=em.find(Categorie.class, id_categorie);
