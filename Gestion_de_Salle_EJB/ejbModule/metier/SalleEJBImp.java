@@ -1,18 +1,16 @@
 package metier;
-
 import java.util.List;
-
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import metier.entities.EtatSalle;
 import metier.entities.Horaire;
 import metier.entities.Jour;
 import metier.entities.Salle;
 import metier.entities.User;
+
 @Stateless
 @Local(SalleLocal.class)
 public class SalleEJBImp implements SalleLocal,SalleRemote{
