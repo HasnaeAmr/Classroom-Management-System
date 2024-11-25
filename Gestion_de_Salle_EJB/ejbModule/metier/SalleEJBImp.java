@@ -7,9 +7,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import metier.entities.EtatSalle;
 import metier.entities.Horaire;
 import metier.entities.Jour;
 import metier.entities.Salle;
+import metier.entities.User;
 @Stateless
 @Local(SalleLocal.class)
 public class SalleEJBImp implements SalleLocal,SalleRemote{
@@ -22,19 +25,34 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
         return req.getResultList();
 	}
 	public Salle getSalle(Long id) {
-		Salle pr = em.find(Salle.class, id);
-        if (pr == null) {
+		Salle salle = em.find(Salle.class, id);
+        if (salle == null) {
             throw new IllegalArgumentException("Salle introuvable");
         }
-        return pr;
+        return salle;
     }
 	public Salle ajouterSalle(Salle s) {
-		  return em.merge(s);
+		Salle salle = em.merge(s);
+		Query h =  em.createQuery("SELECT h FROM Horaire h");
+		List<Horaire> horaires = (List<Horaire>) h.getResultList();
+		Query j = em.createQuery("SELECT j FROM Jour j");
+		List<Jour> jours = (List<Jour>) j.getResultList();
+
+		    // pour les combinaisons entre les jours et les horaires dans etat_salle
+		    for (Jour jour : jours) {
+		    	for(Horaire horaire : horaires) {
+		    		EtatSalle etatSalle = new EtatSalle();
+		            etatSalle.setSalle(salle);  
+		            etatSalle.setHoraire(horaire);     
+		            etatSalle.setJour(jour);            
+		        }}
+		  return salle;
 	}
 	public void modifierSalle(Long id, Salle s) {
 		Salle salle = em.find(Salle.class, id);
 		salle.setNomSalle(s.getNomSalle());
 		salle.setCapacite(s.getCapacite());
+		salle.setType(s.getType());
 	}
 	public void supprimerSalle(Long id) {
 		Salle s = em.find(Salle.class, id);
@@ -43,70 +61,98 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
 	}
 	
 	public boolean getEtat(Long id, Horaire h, Jour j) {
-		Query req = em.createQuery("SELECT s.etat FROM EtatSalle s WHERE s.id_salle = :id AND s.id_horaire = :h AND s.id_jour = :j");
-		req.setParameter("id", id);
-        req.setParameter("j", j.getIdJour());
-        req.setParameter("h", h.getIdHoraire());
+		Query req = em.createQuery("SELECT s.etat FROM EtatSalle s WHERE s.salle = :s AND s.horaire = :h AND s.jour = :j");
+		Salle s = em.find(Salle.class, id);
+		req.setParameter("id", s);
+        req.setParameter("j", j);
+        req.setParameter("h", h);
         return (boolean) req.getSingleResult();
         
 	}
 	public void setEtat(Long id, Horaire h, Jour j , boolean e) {
 		Query updateReq = em.createQuery(
-			    "UPDATE etat_salle s SET s.etat = :newEtat WHERE s.id_salle = :id AND s.id_horaire = :h AND s.id_jour = :j"
+			    "UPDATE EtatSalle s SET s.etat = :newEtat WHERE s.salle = :s AND s.horaire = :h AND s.jour = :j"
 			);
+		Salle s = em.find(Salle.class, id);
 		updateReq.setParameter("newEtat", e);
-		updateReq.setParameter("id", id);
-		updateReq.setParameter("j", j.getIdJour());
-		updateReq.setParameter("h", h.getIdHoraire());
+		updateReq.setParameter("s", s);
+		updateReq.setParameter("j", j);
+		updateReq.setParameter("h", h);
 		
 	}
-	public List<Salle> getSallesVidesByHoraireNDJour(Horaire h,Jour j){
-		Query q = em.createQuery("SELECT *\r\n"
-				+ "FROM salle\r\n"
-				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle\r\n"
-				+ "WHERE etat_salle.id_horaire=:h and etat_salle.id_jour=:j;"
-				+ "AND etat_salle.etat = false;") ;
-		return q.getResultList();	}
-	
-	public List<Salle> getSallesVides(){
-		Query q = em.createQuery("SELECT *\r\n"
-				+ "FROM salle\r\n"
-				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle\r\n"
-				+ "WHERE etat_salle.etat = false;") ;
+	public List<EtatSalle> getSallesVides(){
+		Query q = em.createQuery("SELECT es FROM EtatSalle es WHERE es.etat = false") ;
 		return q.getResultList();	}
 	@Override
-	public List<Salle> filtreJH(Horaire h, Jour j) {
-		Query q = em.createQuery("SELECT *\r\n"
-				+ "FROM salle\r\n"
-				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle\r\n"
-				+ "WHERE etat_salle.id_horaire=:h and etat_salle.id_jour=:j") ;
+	public List<EtatSalle> filtreJH(Horaire h, Jour j) {
+		Query q = em.createQuery("SELECT es FROM EtatSalle WHERE es.horaire=:h and es.jour=:j") ;
 		q.setParameter("h", h);
 		q.setParameter("j", j);
 		return q.getResultList();
 	}
 
-	public List<Salle> filtreJ(Jour j){
-		Query q = em.createQuery("SELECT *"
-				+ "FROM salle\r\n"
-				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle"
-				+ "WHERE etat_salle.id_jour=:j") ;
+	public List<EtatSalle> filtreJ(Jour j){
+		Query q = em.createQuery("SELECT es FROM EtatSalle WHERE es.jour=:j") ;
 		q.setParameter("j", j);
 		return q.getResultList();
 	}
-	public List<Salle> filtreH(Horaire h){
-		Query q = em.createQuery("SELECT *"
-				+ "INNER JOIN etat_salle ON salle.id_salle = etat_salle.id_salle"
-				+ "WHERE etat_salle.id_horaire=:h") ;
+	public List<EtatSalle> filtreH(Horaire h){
+		Query q = em.createQuery("SELECT es FROM EtatSalle WHERE es.horaire=:h") ;
 		q.setParameter("h", h);
 		return q.getResultList();
 	}
 
-	public List<Salle> filtreP(Long id){
-		Query q = em.createQuery("SELECT s " +
-			    "FROM Salle s " + 
-			    "JOIN s.etatSalles es " +
-			    "WHERE es.id_prof = :id AND es.etat = true") ; // true=non vide
-		q.setParameter("id", id);
+	public List<EtatSalle> filtreP(int id){
+		Query q = em.createQuery("SELECT es FROM EtatSalle WHERE es.prof = :p AND es.etat = true") ; // true=non vide
+		User prof = em.find(User.class, id);
+		q.setParameter("p", prof);
+		return q.getResultList();
+	}
+	@Override
+
+	public EtatSalle filtreEtatNom(String nom) {
+		Query q = em.createQuery("SELECT s FROM Salle s WHERE s.nom_salle = :nom"); 
+		q.setParameter("nom", nom);
+		Salle salle = (Salle) q.getSingleResult();
+		Query qu = em.createQuery("SELECT es FROM EtatSalle es WHERE es.salle = :s"); 
+		q.setParameter("s", salle);
+		EtatSalle es = (EtatSalle) qu.getSingleResult();
+		return es;
+		
+	}
+	@Override
+	public List<EtatSalle> filtrePJH(Long id, Horaire h, Jour j) {
+		Query q = em.createQuery("SELECT es " +
+			    "FROM EtatSalle es " + 
+			    "WHERE es.prof = :p AND es.etat = true and es.horair = :h and es.jour = :j") ; // true=non vide
+		User prof = em.find(User.class, id);
+		q.setParameter("p", prof);
+		q.setParameter("h", h);
+		q.setParameter("j", j);
+		return q.getResultList();
+	}
+
+	public List<EtatSalle> filtrePJ(Long id, Jour j){
+		Query q = em.createQuery("SELECT es " +
+			    "FROM EtatSalle es " + 
+			    "WHERE es.prof = :p AND es.etat = true and es.jour = :j") ; // true=non vide
+		User prof = em.find(User.class, id);
+		q.setParameter("p", prof);
+		q.setParameter("j", j);
+		return q.getResultList();
+	}
+	public List<EtatSalle> filtrePH(Long id, Horaire h){
+		Query q = em.createQuery("SELECT es " +
+			    "FROM EtatSalle es " + 
+			    "WHERE es.prof = :p AND es.etat = true and es.horair = :h ") ; // true=non vide
+		User prof = em.find(User.class, id);
+		q.setParameter("p", prof);
+		q.setParameter("j", h);
+		return q.getResultList();
+	}
+
+	public List<EtatSalle> getEtatSalles(){
+		Query q = em.createQuery("SELECT es FROM EtatSalle");
 		return q.getResultList();
 	}
 }
