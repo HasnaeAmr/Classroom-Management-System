@@ -1,16 +1,21 @@
 package metier;
+
+import java.util.Collections;
 import java.util.List;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import jakarta.transaction.Transactional;
 import metier.entities.EtatSalle;
 import metier.entities.Horaire;
 import metier.entities.Jour;
 import metier.entities.Salle;
 import metier.entities.User;
-
 @Stateless
 @Local(SalleLocal.class)
 public class SalleEJBImp implements SalleLocal,SalleRemote{
@@ -24,28 +29,33 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
 	}
 	public Salle getSalle(Long id) {
 		Salle salle = em.find(Salle.class, id);
-        if (salle == null) {
+        if (salle == null) 
             throw new IllegalArgumentException("Salle introuvable");
-        }
+        
         return salle;
     }
+	
 	public Salle ajouterSalle(Salle s) {
-		Salle salle = em.merge(s);
-		Query h =  em.createQuery("SELECT h FROM Horaire h");
-		List<Horaire> horaires = (List<Horaire>) h.getResultList();
-		Query j = em.createQuery("SELECT j FROM Jour j");
-		List<Jour> jours = (List<Jour>) j.getResultList();
+	    Salle salle = em.merge(s);  
 
-		    // pour les combinaisons entre les jours et les horaires dans etat_salle
-		    for (Jour jour : jours) {
-		    	for(Horaire horaire : horaires) {
-		    		EtatSalle etatSalle = new EtatSalle();
-		            etatSalle.setSalle(salle);  
-		            etatSalle.setHoraire(horaire);     
-		            etatSalle.setJour(jour);            
-		        }}
-		  return salle;
+	    List<Horaire> horaires = em.createQuery("SELECT h FROM Horaire h", Horaire.class).getResultList();
+	    List<Jour> jours = em.createQuery("SELECT j FROM Jour j", Jour.class).getResultList();
+
+	    for (Jour jour : jours) {
+	        for (Horaire horaire : horaires) {
+	            EtatSalle etatSalle = new EtatSalle();
+	            etatSalle.setSalle(salle);  
+	            etatSalle.setHoraire(horaire);     
+	            etatSalle.setJour(jour); 
+	            etatSalle.setProf(null);
+	            etatSalle.setEtatSalle(false);
+	            EtatSalle es = em.merge(etatSalle);
+	        }
+	    }
+	    
+	    return salle;
 	}
+
 	public void modifierSalle(Long id, Salle s) {
 		Salle salle = em.find(Salle.class, id);
 		salle.setNomSalle(s.getNomSalle());
@@ -67,57 +77,64 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
         return (boolean) req.getSingleResult();
         
 	}
-	public void setEtat(Long id, Horaire h, Jour j , boolean e) {
+	public void setEtat(Long id, Horaire h, Jour j , boolean e, User prof) {
 		Query updateReq = em.createQuery(
-			    "UPDATE EtatSalle s SET s.etat = :newEtat WHERE s.salle = :s AND s.horaire = :h AND s.jour = :j"
+			    "UPDATE EtatSalle s SET s.etat = :newEtat, s.prof=:prof  WHERE s.id_etat = :id AND s.horaire = :h AND s.jour = :j"
 			);
-		Salle s = em.find(Salle.class, id);
+		
 		updateReq.setParameter("newEtat", e);
-		updateReq.setParameter("s", s);
+		updateReq.setParameter("id", id);
 		updateReq.setParameter("j", j);
 		updateReq.setParameter("h", h);
-		
+		updateReq.setParameter("prof", prof);
+		updateReq.executeUpdate();
 	}
 	public List<EtatSalle> getSallesVides(){
 		Query q = em.createQuery("SELECT es FROM EtatSalle es WHERE es.etat = false") ;
 		return q.getResultList();	}
 	@Override
 	public List<EtatSalle> filtreJH(Horaire h, Jour j) {
-		Query q = em.createQuery("SELECT es FROM EtatSalle WHERE es.horaire=:h and es.jour=:j") ;
+		Query q = em.createQuery("SELECT es FROM EtatSalle es WHERE es.horaire=:h and es.jour=:j") ;
 		q.setParameter("h", h);
 		q.setParameter("j", j);
 		return q.getResultList();
 	}
 
 	public List<EtatSalle> filtreJ(Jour j){
-		Query q = em.createQuery("SELECT es FROM EtatSalle WHERE es.jour=:j") ;
+		Query q = em.createQuery("SELECT es FROM EtatSalle es WHERE es.jour=:j") ;
 		q.setParameter("j", j);
 		return q.getResultList();
 	}
 	public List<EtatSalle> filtreH(Horaire h){
-		Query q = em.createQuery("SELECT es FROM EtatSalle WHERE es.horaire=:h") ;
+		Query q = em.createQuery("SELECT es FROM EtatSalle es WHERE es.horaire=:h") ;
 		q.setParameter("h", h);
 		return q.getResultList();
 	}
 
 	public List<EtatSalle> filtreP(int id){
-		Query q = em.createQuery("SELECT es FROM EtatSalle WHERE es.prof = :p AND es.etat = true") ; // true=non vide
+		Query q = em.createQuery("SELECT es FROM EtatSalle es WHERE es.prof = :p AND es.etat = true") ; // true=non vide
 		User prof = em.find(User.class, id);
 		q.setParameter("p", prof);
 		return q.getResultList();
 	}
 	@Override
 
-	public EtatSalle filtreEtatNom(String nom) {
-		Query q = em.createQuery("SELECT s FROM Salle s WHERE s.nom_salle = :nom"); 
-		q.setParameter("nom", nom);
-		Salle salle = (Salle) q.getSingleResult();
-		Query qu = em.createQuery("SELECT es FROM EtatSalle es WHERE es.salle = :s"); 
-		q.setParameter("s", salle);
-		EtatSalle es = (EtatSalle) qu.getSingleResult();
-		return es;
-		
+	public List<EtatSalle> filtreEtatNom(String nom) {
+	    try {
+	        Query q = em.createQuery(
+	            "SELECT es FROM EtatSalle es JOIN es.salle s WHERE s.nom_salle = :nom"
+	        );
+	        q.setParameter("nom", nom);
+	        return q.getResultList();
+	    } catch (NoResultException e) {
+	        System.out.println("No EtatSalle found for salle: " + nom);
+	        return Collections.emptyList();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return Collections.emptyList();
+	    }
 	}
+
 	@Override
 	public List<EtatSalle> filtrePJH(Long id, Horaire h, Jour j) {
 		Query q = em.createQuery("SELECT es " +
@@ -150,7 +167,17 @@ public class SalleEJBImp implements SalleLocal,SalleRemote{
 	}
 
 	public List<EtatSalle> getEtatSalles(){
-		Query q = em.createQuery("SELECT es FROM EtatSalle");
+		Query q = em.createQuery("SELECT es FROM EtatSalle es");
 		return q.getResultList();
+	}
+	public EtatSalle getEtatById(Long id) {
+		EtatSalle es = em.find(EtatSalle.class, id);
+		return es;
+	}
+	public void setProf(Long idEtat, User prof) {
+		Query q = em.createQuery("UPDATE EtatSalle s SET s.prof = :p where s.id_etat=:id");
+		q.setParameter("p", prof);
+		q.setParameter("id", idEtat);
+		q.executeUpdate();
 	}
 }
