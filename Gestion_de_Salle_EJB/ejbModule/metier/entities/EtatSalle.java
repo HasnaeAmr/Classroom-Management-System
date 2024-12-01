@@ -33,9 +33,30 @@ public class EtatSalle implements Serializable{
     private boolean etat;
     
     @ManyToOne
-    @JoinColumn(name="id_prof")
+    @JoinColumn(name="id_prof", nullable = true)
     private User prof;
     
+    public void setSalle(Salle salle) {
+    	this.salle=salle;
+    }
+    public Salle getSalle() {
+    	return salle;
+    }
+    public Horaire getHoraire() {
+    	return horaire;
+    }
+    public Long getIdEtatSalle() {
+    	return id_etat;
+    }
+    public Jour getJour() {
+    	return jour;
+    }
+    public void setHoraire(Horaire horaire) {
+    	this.horaire=horaire;
+    }
+    public void setJour(Jour jour) {
+    	this.jour=jour;
+    }
     public boolean getEtatSalle() {
     	return etat;
     }
