@@ -172,13 +172,13 @@ if (user == null) {
                     </header>
                     <section>
                       <ul class="days">
-                        <li>Sun</li>
-                        <li>Mon</li>
-                        <li>Tue</li>
-                        <li>Wed</li>
-                        <li>Thu</li>
-                        <li>Fri</li>
-                        <li>Sat</li>
+                        <li>Lun</li>
+                        <li>Mar</li>
+                        <li>Mer</li>
+                        <li>Jeu</li>
+                        <li>Ven</li>
+                        <li>Sam</li>
+                        <li>Dim</li>
                       </ul>
                       <ul class="dates"></ul>
                     </section>
