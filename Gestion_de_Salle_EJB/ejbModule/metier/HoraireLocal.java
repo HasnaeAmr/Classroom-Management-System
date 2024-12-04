@@ -9,4 +9,5 @@ import metier.entities.Horaire;
 @Local
 public interface HoraireLocal {
 	public List<Horaire> listHoraire();
+	public Horaire getHoraire(Long id_horaire);
 }
