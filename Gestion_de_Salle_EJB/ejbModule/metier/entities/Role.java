@@ -39,7 +39,7 @@ public class Role implements Serializable{
 		
 	}
 	
-	public int getId_role() {
+	public int getIdRole() {
 		return id;
 	}
 
