@@ -10,4 +10,5 @@ import metier.entities.Jour;
 public interface JourRemote {
 
 	public List<Jour> listJour();
+	public Jour getJour(Long id_jour);
 }

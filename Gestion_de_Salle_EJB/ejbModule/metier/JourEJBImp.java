@@ -6,9 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import metier.entities.Horaire;
 
-public class JourEJBImp {
+import metier.entities.Jour;
+
+public class JourEJBImp implements JourLocal {
 
 	public JourEJBImp() {
 		// TODO Auto-generated constructor stub
@@ -17,8 +18,12 @@ public class JourEJBImp {
     private EntityManager em;
 	
 
-	public List<Horaire> listJour(){
+	public List<Jour> listJour(){
 		Query req = em.createQuery("select j from Jour j");
         return req.getResultList();
+	}
+	public Jour getJour(Long id_jour) {
+		Jour j=em.find(Jour.class, id_jour);
+		return j;
 	}
 }
