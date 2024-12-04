@@ -167,7 +167,7 @@
                     <% 
                         if (profs != null) {
                             for (User prof : profs) {
-                                if (prof.getRole().getId_role() == 3) { 
+                                if (prof.getRole().getIdRole() == 3) { 
                                     boolean selected = mfc != null && prof.getId() == mfc.getProf().getId();
                     %>
                     <option value="<%= prof.getId() %>" <%= selected ? "selected" : "" %>>
