@@ -1,21 +1,24 @@
 
+
 const header = document.querySelector(".calendar h3");
 const dates = document.querySelector(".dates");
 const navs = document.querySelectorAll("#prev, #next");
 
 const months = [
-  "Janvier",
-  "Février",
-  "Mars",
-  "Avril",
+
+  "January",
+  "February",
+  "March",
+  "April",
   "May",
-  "Juin",
-  "Juillet",
-  "Aout",
-  "Septembre",
-  "Octobre",
-  "Novembre",
-  "Décembre",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+
 ];
 
 let date = new Date();
@@ -78,4 +81,6 @@ navs.forEach((nav) => {
   });
 });
 
+
 renderCalendar();
+

@@ -25,9 +25,8 @@ public class Filiere {
 	public Filiere() {
 		// TODO Auto-generated constructor stub
 	}
-	public Filiere(int id_filiere, String nom_filiere, String effectif) {
+	public Filiere(String nom_filiere, String effectif) {
 		super();
-		this.id_filiere = id_filiere;
 		this.nom_filiere = nom_filiere;
 		this.effectif = effectif;
 	}

@@ -9,5 +9,6 @@ import metier.entities.Horaire;
 @Remote
 public interface HoraireRemote {
 	public List<Horaire> listHoraire();
+	public Horaire getHoraire(Long id_horaire);
 
 }

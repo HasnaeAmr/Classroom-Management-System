@@ -1,6 +1,5 @@
-
 @charset "UTF-8";
-
+@charset "UTF-8";
 /* Google Font Import - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 *{
@@ -21,12 +20,6 @@
 body{
     min-height: 100vh;
     background-color:  #f2f4f7;
-
-
-     display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-
 }
 
 ::selection{
@@ -187,25 +180,55 @@ header .image-text .name {
 }
  
 .container{
-    box-sizing: border-box;
+
+    margin-left:0px;
  
 }
-/* .home .search-box{
-    display: flex;
+.home .search-box{
+    display: inline-block;
     align-items: center;
     justify-content: center;
     border-radius: 6px;
     background-color: var(--primary-color-light);
     cursor: pointer;
     transition: var(--tran-05);
-    padding-left:150px;
+    margin-left:300px;
+    margin-bottom:10px;
 }
 
 .home .search-box .icon{
-    color: var(--text-color);
-    transition: var(--tran-03);
-} */
+    color: white;
+}
+.home .search-btn{
+	border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    background:linear-gradient(112.6deg, rgb(56, 24, 40) -10.7%, rgb(23, 148, 185) 100.2%);;
+    width:50px;
+    align-items: center;
+}
+.home .search-box input{
+	border:2px solid rgba(255,255,255,.2);
+    border-bottom: 2px solid ;
+    padding: 10px;
+    outline:0;
+    background-color:none;
+    border-radius:10px ;
+    width: 400px;
+    margin-right:20px;
+    
+}
+.ajout-btn {
 
+	margin:10px 0 10px 60px;
+	 
+}
+.ajout-btn .icon{
+	 color: white;
+	 
+}
 .home .head{
     display: inline-block;
     justify:space-between;
@@ -260,183 +283,8 @@ header .image-text .name {
     font-size: 18px;
     font-weight: 600;
     margin-bottom:10px;
-
-
-    margin-left:90px;
-    text-align: left;
+    margin-left:20px;
 }
-.username{
-	color: #154963;
-
-}
-.card{
-    display: grid;
-   margin-top:20px;
-
-   margin-left: -60px;
-    grid-template-columns: 280px 280px 360px;
-    grid-template-rows: auto auto;
-    gap: 10px 50px;
-    /* display: inline-flex; */
-        width: 1000px;
-
-       
-        /* background-color: lightblue; */
-        grid-template-areas: 
-        "card1 card2 card3"
-        "wide-card wide-card card3";
-        
-
-.C{
-
-    border:none;
-    width:280px;
-    height:250px;
-    background-color: #ffffff;
-    margin:10px 60px;
-    padding:50px;
-    box-shadow: 0 0 20px rgb(195, 192, 192);
-    border-radius: 10px;
-}
-.c1 {
-    grid-area: card1;
-    height: 250px;
-}
-
-.c2 {
-    grid-area: card2;
-    height: 250px;
-}
-
-=======
-.c3 h3{
-	font-size: 25px;
-	margin-top: -15px;
-	margin-bottom: 15px;
-}
-.card h4{
-	display: inline-block;
-	margin-left: 0px;
-	font-size: 35px;
-}
-
-.C{
-
-    border:none;
-    width:300px;
-    height:100px;
-    background-color: #ffffff;
-    margin:10px 60px;
-    padding:35px;
-    box-shadow: 0 0 20px rgb(195, 192, 192);
-    border-radius: 10px;
-}
-.c1{
-    grid-area: card1;
-    height: 150px;
-    display: flex;
-    justify-content: space-between;
-   
-}
-.c22{
-	height: 150px;
-    display: flex;
-    justify-content: space-between;
-}
-.c1 p{
-	font-size: 13px;
-}
-.c2 {
-    grid-area: card2;
-    height: 150px;
-    display: flex;
-   
-}
-.c2 p {
-	margin-left: 30px;
-}
-.c2 h4{
-	margin-left: 30px;
-}
-.c2 p{
-	font-size: 13px;
-}
-
-.c4 {
-    grid-area: card3;
-    width: 320px;
-    height: 400px;
-}
-
-
-.c3{
-    grid-area: wide-card;
-    width: calc(280px + 280px + 45px);
-    height: 200px;
-    position:relative;
-}
-
-.card i {
-	margin: 2px;
-	font-size: 40px;
-	width: 70px;
-	margin-left: 0;
-	text-align: center;
-	color: #154963 ;
-	display: inline-block;
-	padding: 15px;
-	background-color: #d8e8f5; 
-	border-radius: 6px;
-}
-
-.c3{
-    grid-area: wide-card;
-    width: calc(280px + 280px + 45px);
-    height: 300px;
-    position:relative;
-}
-.card h5{
-	margin-bottom: 2px;
-	margin-top: 13px;
-}
-
-input.journalisation{
-    position:absolute;
-    display:flex;
-    margin-top:60px;
-    margin-left:200px;
-    width: 100px;
-    cursor:pointer;
-    border:none;
-    background:linear-gradient(112.6deg, rgb(56, 24, 40) -10.7%, rgb(23, 148, 185) 100.2%);
-    color:white;
-}
-
-.home .icon1{
-    background-color:#154963;
-    font-size:55px;
-    border-radius: 50%;
-    color: #ffffff;
-    margin-right: 50px;
-    text-align: center;
-
-}
-
-.page-controle .page{
-    background-color: #154963;
-    border-radius: 10px;
-    text-align: center;
-    cursor:pointer;
-}
-.page-controle ul{
-    list-style: none;
- 
-}
-.page-controle ul li a{
-    text-decoration: none;
-    color:white;
-}
-
 button{
     border: none;
     border-radius: 20px;
@@ -446,10 +294,71 @@ button{
     background:linear-gradient(112.6deg, rgb(56, 24, 40) -10.7%, rgb(23, 148, 185) 100.2%);;
     width:200px;
     align-items: center;
-   
-   
+ 
 }
-
+.action{
+	display:inline-flex;
+	justify-content:center;
+	align-content:center;
+	margin:0 10px ;
+}
+.btnModif{
+	 border: none;
+    border-radius: 60px;
+    font-size: 13px;
+    padding: 3px;
+    cursor: pointer;
+    background:linear-gradient(109.6deg, rgb(5, 85, 84) 11.2%, rgb(64, 224, 208) 91.1%);
+    width:30px;
+    align-items: center;
+}
+.btnDelete{
+	 border: none;
+    border-radius: 60px;
+    font-size: 13px;
+    padding: 3px;
+    cursor: pointer;
+    background:radial-gradient(circle at 10% 20%, rgb(221, 49, 49) 0%, rgb(119, 0, 0) 90%);
+    width:30px;
+    align-items: center;
+}
+.btnDelete .icon,.btnModif .icon,.valid-btn .icon{
+	color:white;
+}
+.valid-btn{
+	border: none;
+    border-radius: 60px;
+    font-size: 15px;
+    padding: 3px;
+    cursor: pointer;
+    background:linear-gradient(112.6deg, rgb(56, 24, 40) -10.7%, rgb(23, 148, 185) 100.2%);;
+    width:30px;
+    align-items: center;
+}
+.choisirfiliere {
+	border-bottom: 2px solid ;
+    padding: 5px;
+    outline:0;
+    background-color:none;
+    border-radius:10px ;
+    width: 30px;
+}
+.selectfiliere{
+	margin:10px  0  20px 50px;
+	
+}
+.choisir{
+	border-bottom: 2px solid ;
+    padding: 5px;
+    outline:0;
+    background-color:none;
+    border-radius:10px ;
+    width: 260px;
+}
+.selectfiliere p{
+	
+	font-size:18px;
+}
 .btn{
     font-size: 13px;
     margin: 20px 100px 0 180px;
@@ -481,114 +390,66 @@ input:focus{
     border-bottom: 2px solid #154963;
 
 }
-
-table h5{
-	margin: 0 20px;
-}
-
-.user2{
-    display:flex;
-    align-content:center;
-    text-align:justify;
+.user{
     border:none;
-    width:700px;
-    height:250px;
-    text-spacing:10px;
-    margin:160px 100px 0 180px;
+    width:1000px;
+    height:500px;
     background-color: #ffffff;
-    padding:100px;
+    margin:10px 60px;
+    padding:50px;
+    box-shadow: 0 0 20px rgb(195, 192, 192);
+    border-radius: 10px;
+}
+.home .container2 form{
+    display:flex;
+    justify-content:space-around;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    padding: 30px;
+    margin: 50px 0 0 250px;
+    border:  2px solid rgba(255,255,255,.2);
+    border-radius: 20px;
+    justify-content: center;
+    background:none;
+    box-shadow: 0 0 20px rgb(195, 192, 192);
+    backdrop-filter: blur(17px);
+    background: rgba(82, 181, 230, 0.067);
+
+}
+.home .container2 form input{
+   border:none;
+   width:250px;
+   margin:30px;
+
+}
+.AjtBtn{
+	margin-left:20px;
+	background-color:white;
+}
+th,td{
+	padding: 20px;
+    text-align: center;
+    font-size:15px;
+}
+.user3{
+    border:none;
+    width:1000px;
+    min-height:700px;
+    max-height:1100px;
+    background-color: #ffffff;
+    margin:10px 60px;
+    padding:50px;
     box-shadow: 0 0 20px rgb(195, 192, 192);
     border-radius: 10px;
 }
 
-.calendar {
-    padding-top:10px;
-    width:340px;
-    height:500px;
-    padding:50px 1rem;
-    background: #fff;
-    border-radius:10px;
-    box-shadow: 0 0 20px rgb(195, 192, 192);
-  }
-  .calendar header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom:10px;
-  }
-  .calendar nav {
-    display: flex;
-    align-items: center;
-    margin-bottom:20px;
-  }
-  .calendar ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    margin-bottom:5px;
-  }
-  .calendar ul li {
-    width: calc(100% / 7);
-    position: relative;
-    z-index: 2;
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #prev,
-  #next {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-  }
-  #prev::before,
-  #next::before {
-    content: "";
-    width: 50%;
-    height: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-style: solid;
-    border-width: 0.25em 0.25em 0 0;
-    border-color: #ccc;
-  }
-  #next::before {
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-  #prev::before {
-    transform: translate(-50%, -50%) rotate(-135deg);
-  }
-  #prev:hover::before,
-  #next:hover::before {
-    border-color: #000;
-  }
-  .days {
-    font-weight: 600;
-  }
-  .dates li.today {
-    color: #fff;
-  }
-  .dates li.today::before {
-    content: "";
-    width: 2rem;
-    height: 2rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(112.6deg, rgb(56, 24, 40) -10.7%, rgb(23, 148, 185) 100.2%);
-    border-radius: 50%;
-    z-index: -1;
-  }
-  .dates li.inactive {
-    color: #ccc;
-
-
-  }
-
+.emploi input{
+	border-bottom: 2px solid ;
+    padding: 10px;
+    outline:0;
+    background-color:none;
+    border-radius:10px ;
+    width: 100px;
+	
+}

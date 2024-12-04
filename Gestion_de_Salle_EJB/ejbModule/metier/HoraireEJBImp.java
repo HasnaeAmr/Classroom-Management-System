@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import metier.entities.Horaire;
 import metier.entities.Salle;
 
-public class HoraireEJBImp {
+public class HoraireEJBImp implements HoraireLocal {
 
 	public HoraireEJBImp() {
 		// TODO Auto-generated constructor stub
@@ -21,5 +21,9 @@ public class HoraireEJBImp {
 	public List<Horaire> listHoraire(){
 		Query req = em.createQuery("select h from Horaire h");
         return req.getResultList();
+	}
+	public Horaire getHoraire(Long id_horaire) {
+		Horaire H=em.find(Horaire.class, id_horaire);
+		return H;
 	}
 }
