@@ -1,4 +1,6 @@
+
 @charset "UTF-8";
+
 /* Google Font Import - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 *{
@@ -19,6 +21,12 @@
 body{
     min-height: 100vh;
     background-color:  #f2f4f7;
+
+
+     display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+
 }
 
 ::selection{
@@ -252,23 +260,33 @@ header .image-text .name {
     font-size: 18px;
     font-weight: 600;
     margin-bottom:10px;
-    margin-left:20px;
+
+
+    margin-left:90px;
+    text-align: left;
+}
+.username{
+	color: #154963;
+
 }
 .card{
     display: grid;
    margin-top:20px;
+
+   margin-left: -60px;
     grid-template-columns: 280px 280px 360px;
     grid-template-rows: auto auto;
-    gap: 50px;
+    gap: 10px 50px;
     /* display: inline-flex; */
-        width: 1090px;
+        width: 1000px;
+
        
         /* background-color: lightblue; */
         grid-template-areas: 
         "card1 card2 card3"
         "wide-card wide-card card3";
         
-}
+
 .C{
 
     border:none;
@@ -290,11 +308,66 @@ header .image-text .name {
     height: 250px;
 }
 
+=======
+.c3 h3{
+	font-size: 25px;
+	margin-top: -15px;
+	margin-bottom: 15px;
+}
+.card h4{
+	display: inline-block;
+	margin-left: 0px;
+	font-size: 35px;
+}
+
+.C{
+
+    border:none;
+    width:300px;
+    height:100px;
+    background-color: #ffffff;
+    margin:10px 60px;
+    padding:35px;
+    box-shadow: 0 0 20px rgb(195, 192, 192);
+    border-radius: 10px;
+}
+.c1{
+    grid-area: card1;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+   
+}
+.c22{
+	height: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+.c1 p{
+	font-size: 13px;
+}
+.c2 {
+    grid-area: card2;
+    height: 150px;
+    display: flex;
+   
+}
+.c2 p {
+	margin-left: 30px;
+}
+.c2 h4{
+	margin-left: 30px;
+}
+.c2 p{
+	font-size: 13px;
+}
+
 .c4 {
     grid-area: card3;
     width: 320px;
     height: 400px;
 }
+
 
 .c3{
     grid-area: wide-card;
@@ -302,6 +375,31 @@ header .image-text .name {
     height: 200px;
     position:relative;
 }
+
+.card i {
+	margin: 2px;
+	font-size: 40px;
+	width: 70px;
+	margin-left: 0;
+	text-align: center;
+	color: #154963 ;
+	display: inline-block;
+	padding: 15px;
+	background-color: #d8e8f5; 
+	border-radius: 6px;
+}
+
+.c3{
+    grid-area: wide-card;
+    width: calc(280px + 280px + 45px);
+    height: 300px;
+    position:relative;
+}
+.card h5{
+	margin-bottom: 2px;
+	margin-top: 13px;
+}
+
 input.journalisation{
     position:absolute;
     display:flex;
@@ -383,6 +481,11 @@ input:focus{
     border-bottom: 2px solid #154963;
 
 }
+
+table h5{
+	margin: 0 20px;
+}
+
 .user2{
     display:flex;
     align-content:center;
@@ -485,4 +588,7 @@ input:focus{
   }
   .dates li.inactive {
     color: #ccc;
+
+
   }
+
