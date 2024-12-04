@@ -3,7 +3,7 @@ package metier;
 import java.util.List;
 
 import javax.ejb.Remote;
-import javax.management.relation.Role;
+import metier.entities.Role;
 
 @Remote
 public interface RoleRemote {

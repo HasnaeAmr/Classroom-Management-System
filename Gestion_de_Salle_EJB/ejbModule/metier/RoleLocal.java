@@ -3,7 +3,7 @@ package metier;
 import java.util.List;
 
 import javax.ejb.Local;
-import javax.management.relation.Role;
+import metier.entities.Role;
 
 @Local
 public interface RoleLocal {

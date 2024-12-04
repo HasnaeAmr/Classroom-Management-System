@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.management.relation.Role;
+import metier.entities.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -21,7 +21,7 @@ public class RoleEJBImp implements RoleRemote, RoleLocal {
 
 	public List<Role> listRoles(){
 
-		Query req = em.createQuery("select r from role r");
+		Query req = em.createQuery("select r from Role r");
 
         return req.getResultList();
 	}
