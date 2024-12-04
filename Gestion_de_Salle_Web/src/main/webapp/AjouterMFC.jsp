@@ -180,7 +180,7 @@
                     <%
                         if (profs != null) {
                             for (User prof : profs) {
-                                if (prof.getRole().getId_role() == 3) { 
+                                if (prof.getRole().getIdRole() == 3) { 
                     %>
                     <option value="<%= prof.getId() %>">
                         <%= prof.getNom() %>
