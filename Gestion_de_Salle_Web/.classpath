@@ -9,5 +9,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/hp/wildfly-22.0.0.Final/modules/system/layers/base/javax/servlet/api/main/jboss-servlet-api_4.0_spec-2.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hp/wildfly-22.0.0.Final/modules/system/layers/base/javax/ejb/api/main/jboss-ejb-api_3.2_spec-2.0.0.Final.jar"/>
+	<classpathentry kind="src" path="/Gestion_de_Salle_EJB"/>
+	<classpathentry kind="lib" path="C:/Users/DELL PRO/Desktop/Itextpdf/kernel-7.1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DELL PRO/Desktop/Itextpdf/layout-7.1.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

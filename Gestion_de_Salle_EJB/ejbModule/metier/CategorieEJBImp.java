@@ -33,7 +33,11 @@ public class CategorieEJBImp implements CategorieLocal,CategorieRemote {
 		Query req=em.createQuery("select c from Categorie c");
 		return req.getResultList();
 	}
-
+	@Override
+	public void setCategorie(int id_categorie,String type_categorie) {
+		Categorie cat=em.find(Categorie.class, id_categorie);
+		cat.setType_categorie(type_categorie);
+	}
 	@Override
 	public void removeCategorie(int id_categorie) {
 		Categorie cat=em.find(Categorie.class, id_categorie);

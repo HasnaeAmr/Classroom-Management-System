@@ -1,38 +1,61 @@
 package metier.entities;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 @Entity
 @Table(name="matiere_filiere_categorie")
 public class MatiereFiliereCategorie {
 
-	 @EmbeddedId
-	    private MatiereFiliereCategorieId id;
+	 public MatiereFiliereCategorie() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	    @ManyToOne
-	    @MapsId("id_matiere")
-	    @JoinColumn(name = "id_matiere")
+	public MatiereFiliereCategorie(Matiere matiere, Filiere filiere, Categorie categorie, int nbr_heure, User prof) {
+		super();
+		this.matiere = matiere;
+		this.filiere = filiere;
+		this.categorie = categorie;
+		this.nbr_heure = nbr_heure;
+		this.prof = prof;
+	}
+
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private int IDmfc;
+
+
+
+		public int getIDmfc() {
+		return IDmfc;
+	}
+
+	public void setIDmfc(int iDmfc) {
+		IDmfc = iDmfc;
+	}
+
+		@ManyToOne
+	    @JoinColumn(name = "id_matiere",nullable = false)
 	    private Matiere matiere;
 
 
 		@ManyToOne
-	    @MapsId("id_filiere")
-	    @JoinColumn(name = "id_filiere")
+	    @JoinColumn(name = "id_filiere",nullable = false)
 	    private Filiere filiere;
 
 	    @ManyToOne
-	    @MapsId("id_categorie")
-	    @JoinColumn(name = "id_categorie")
+	    @JoinColumn(name = "id_categorie",nullable = false)
 	    private Categorie categorie;
 
 	    private int nbr_heure;
 
 	    @ManyToOne
-	    @JoinColumn(name = "id_prof")
+	    @JoinColumn(name = "id_prof",nullable = false)
 	    private User prof;
 
 	    public Matiere getMatiere() {
@@ -74,4 +97,5 @@ public class MatiereFiliereCategorie {
 		public void setProf(User prof) {
 			this.prof = prof;
 		}
+
 }

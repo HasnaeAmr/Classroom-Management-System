@@ -13,7 +13,7 @@ public class Horaire implements Serializable{
 	private Long id_horaire;
 	@Column(name="nom_horaire")
 	private String nom_horaire;
-	@OneToMany(mappedBy = "id_horaire")
+	@OneToMany(mappedBy = "horaire")
     private List<EtatSalle> etatsSalle;
 	
 	

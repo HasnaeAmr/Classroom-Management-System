@@ -3,6 +3,10 @@
     <wb-module deploy-name="Gestion_de_Salle_Web">
                 
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+<<<<<<< HEAD
+=======
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+>>>>>>> ae5c65d382c295ef99eee81d904ebe41c8bbfa6f
                 
         <property name="context-root" value="Gestion_de_Salle_Web"/>
                 

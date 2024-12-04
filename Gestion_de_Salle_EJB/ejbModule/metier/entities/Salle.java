@@ -16,12 +16,16 @@ public class Salle implements Serializable{
 	private String nom_salle;
 	@Column(name="capacite")
 	private int capacite;
-	@OneToMany(mappedBy = "id_salle")
+	@OneToMany(mappedBy = "salle")
     private List<EtatSalle> etatsSalle;
-	
-	public Salle(String nom, int capacite, boolean etat, Long id_horaire, Long id_jour) {
+	@ManyToOne
+	@JoinColumn(name="type")
+	private Categorie categorie;
+	public Salle() {}
+	public Salle(String nom, int capacite,Categorie categorie) {
 		this.nom_salle=nom;
 		this.capacite=capacite;
+		this.categorie=categorie;
 	}
 	
 
@@ -47,6 +51,12 @@ public class Salle implements Serializable{
 
     public void setCapacite(int capacite) {
         this.capacite = capacite;
+    }
+    public Categorie getType() {
+    	return categorie;
+    }
+    public void setType(Categorie categorie) {
+    	this.categorie= categorie;
     }
     
 }
