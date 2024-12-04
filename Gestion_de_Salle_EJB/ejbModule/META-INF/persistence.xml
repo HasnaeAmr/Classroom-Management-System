@@ -11,17 +11,21 @@
 <class>metier.entities.Matiere</class>
 <class>metier.entities.User</class>
 <class>metier.entities.Salle</class>
+<class>metier.entities.User</class>
 <class>metier.entities.Role</class>
 <class>metier.entities.Horaire</class>
 <class>metier.entities.Jour</class>
 <class>metier.entities.Liberation</class>
 <class>metier.entities.Reservation</class>
-<class>metier.entities.EtatSlle</class>
-<class>metier.entities.User</class>
+<class>metier.entities.EtatSalle</class>
 <class>metier.entities.Journalisation</class>
 <class>metier.entities.MatiereFiliereCategorie</class>
 <properties>
+ <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
 <property name="javax.persistence.schema-generation.database.action" value="update"/>
+<property name="hibernate.show_sql" value="true"/>
+<property name="hibernate.format_sql" value="true"/>
+
 </properties>
 </persistence-unit>
 </persistence>
