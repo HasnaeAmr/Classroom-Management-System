@@ -84,6 +84,12 @@ if (user == null) {
                             <span class="text nav-text">Gestion de Salles</span>
                         </a>
                     </li>
+                    <li class="nav-link" id="CButton">
+                        <a href="Notification.jsp">
+                            <i class='bx bxs-bell icon'></i>
+                            <span class="text nav-text">Notifications</span>
+                        </a>
+                    </li>
                    
                 </ul>
             </div>
@@ -93,14 +99,8 @@ if (user == null) {
         <div class="head"> 
         <div class="notif">
             
-            <div><li class="nav-link">
-                <a href="">
-                    <i class='bx bxs-bell icon'></i>
-                </a>
-            </li>
-
-        </div>
-            <div><li class="nav-link">
+            <div>
+            <li class="nav-link">
                 <a href="LogOut.logout">
                     <i class='bx bx-log-out icon' ></i>
                 </a>
@@ -108,7 +108,7 @@ if (user == null) {
             </div>
         </div>
        
-        <div class="Dash-text">Salut le gestionnaire <span class="username"><%= user.getNom() %> !</span></div>
+        <div class="Dash-text">Salut <span class="username"><%= user.getNom() %> !</span></div>
         </div>
         <div class="card">
             <div class="C c1"><div class="conti">
@@ -160,7 +160,7 @@ if (user == null) {
     }
 %>
                 </div>
-                <a href="Journalisation.jsp" class="journalisation" >Show More</a>
+                <a href="Journalisation.journal" class="journalisation" >Plus ..</a>
             </div>
             <div class="calendar c5 C">
                     <header>
