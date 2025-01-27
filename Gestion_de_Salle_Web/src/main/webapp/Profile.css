@@ -1,0 +1,329 @@
+@charset "UTF-8";
+@charset "UTF-8";
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #154963;
+    --primary-color-light: #F6F5FF;
+    --text-color: #707070;
+}
+
+body{
+    min-height: 100vh;
+    background-color:  #f2f4f7;
+}
+
+::selection{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* body.dark{
+    --body-color: #18191a;
+    --sidebar-color: #242526;
+    --primary-color-light: #3a3b3c;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+}  */
+
+/* ===== Sidebar ===== */
+.sidebar{
+    position: fixed;
+    top: 10px;
+    margin-bottom:10px;
+    margin-left: 10px;
+    height: 97vh;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+    /* background: #dff4fe; */
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius:10px; 
+    border-shadow: 0 0 20px rgb(195, 192, 192);
+}
+.sidebar.clos{
+    width: 280px;
+} 
+
+/* ===== Reusable code - Here ===== */
+ .sidebar li{
+    height: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sidebar header .image,
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+} 
+
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    
+}
+
+.sidebar .text,
+.sidebar .icon{
+    color: var(--text-color);
+}
+
+.sidebar .text{
+    font-size: 17px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+    right:0;
+}
+
+
+
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+}
+.sidebar header .logo-text{
+    display: flex;
+    flex-direction: column;
+}
+header .image-text .name {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.sidebar header .image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar header .image img{
+    width: 90px;
+    border-radius: 6px;
+}
+
+
+
+.sidebar .menu{
+    margin-top: 90px;
+}
+
+
+.sidebar li a{
+    list-style: none;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 50px;
+    text-decoration: none;
+   
+}
+
+.sidebar li a:hover{
+    background: linear-gradient(112.6deg, rgb(56, 24, 40) -10.7%, rgb(23, 148, 185) 100.2%);
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--sidebar-color);
+}
+
+.sidebar .menu-bar{
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+.menu-bar::-webkit-scrollbar{
+    display: none;
+}
+
+
+.menu-bar .bottom-content{
+    padding-top:220px;
+}
+
+
+.home{ 
+    margin-top:10px;
+    margin-left:330px;
+  
+
+}
+.home .text{
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 12px 60px;
+}
+ 
+.container{
+
+    margin-left:0px;
+ 
+}
+
+.home .head{
+    display: inline-block;
+    justify:space-between;
+    /* background-color: lightblue; */
+    width: 1090px;
+}
+.head li{
+    display:inline-block;
+    justify:space-around;
+    height: 50px;
+    list-style: none;
+    
+
+}
+.head .notif{
+    display: inline-flex;
+    margin-left: 945px;
+    margin-top: 5px;
+   
+}
+.head li a{
+    list-style: none;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 50px;
+    text-decoration: none;
+    color:var(--text-color);
+}
+.head .icon{
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    width: 55px;
+    border-radius: 50px;
+    background-color:white;
+    margin:3px;
+    color:var(--text-color);
+}
+.head .icon:hover{
+    background: linear-gradient(112.6deg, rgb(56, 24, 40) -10.7%, rgb(23, 148, 185) 100.2%);
+    color:white;
+}
+.head .Dash-text{
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom:10px;
+    margin-left:20px;
+}
+
+
+.user2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 20px auto;
+    width: 60%;
+    height: 470px;
+    max-width: 500px;
+}
+
+.icon-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.icon1 {
+    font-size: 80px;
+    color: #154963;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.form-group {
+	margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #154963;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.btn-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+button {
+    background: linear-gradient(112.6deg, rgb(56, 24, 40) -10.7%, rgb(23, 148, 185) 100.2%);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(112.6deg, rgb(23, 148, 185) -10.7%, rgb(56, 24, 40) 100.2%);
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
