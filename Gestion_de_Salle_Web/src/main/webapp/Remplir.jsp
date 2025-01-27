@@ -1,25 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="metier.entities.*" %>
-<%@ page import="java.util.*" %>
+    <%@ page import="metier.entities.User" %>    
+
+<%@ page import="java.util.List" %>
+<%@ page import="metier.entities.EtatSalle" %> 
+<%@ page import="metier.entities.User" %> 
+<%@ page import="metier.entities.Categorie" %>
 <!DOCTYPE html>
-<html>
+<html >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!----======== CSS&& Bootstrap ======== -->
-    
-    <link rel="stylesheet" type="text/css" href="bootstrap.css">
-    <link rel="stylesheet" href="filiere.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    
-    <title>Filiere</title>
+    <%
+User user = (User) session.getAttribute("user");
+List<EtatSalle> sallesV = (List<EtatSalle>) session.getAttribute("sallesV");
+List<EtatSalle> sallesD = (List<EtatSalle>) session.getAttribute("sallesD");
+if (user == null) { 
+%>
+    <h1>Vous n'avez pas l'accès à cette page !</h1>
+    <a href="hh.log">Se connecter</a>
+<%
+} else { 
+%>
+    <title>Profile | <%= user.getNom() %> </title>
 </head>
 <body>
+
 <div class="container">
   <nav class="sidebar clos">
         <header>
@@ -36,6 +50,62 @@
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
+                <%if(user.getRole().getIdRole()==2 ) {%>
+                    <li class="nav-link" id="CButton">
+                        <a href="DashboardGestionnaire.jsp">
+                            <i class='bx bxs-dashboard icon'></i>
+                            <span class="text nav-text">DashBoard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" id="CButton">
+                        <a href="Profile.jsp">
+                            <i class='bx bx-user-circle icon' ></i>
+                            <span class="text nav-text">Profile</span>
+                        </a>
+                    </li>
+					
+                    <li class="nav-link" id="CButton">
+                        <a href="oo.salle">
+                            <i class='bx bxs-group icon'></i>
+                            <span class="text nav-text">Salles</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link" id="CButton">
+                        <a href="o.gesal">
+                            <i class='bx bxs-compass icon' ></i>
+                            <span class="text nav-text">Gestion de Salles</span>
+                        </a>
+                    </li>
+                   
+                    <%}else if(user.getRole().getIdRole()==3 ){ %>
+                     <li class="nav-link" id="CButton">
+                        <a href="j.ournal">
+                            <i class='bx bxs-dashboard icon'></i>
+                            <span class="text nav-text">DashBoard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link" id="CButton">
+                        <a href="Profile.jsp">
+                            <i class='bx bx-user-circle icon' ></i>
+                            <span class="text nav-text">Profile</span>
+                        </a>
+                    </li>
+					
+                     <li class="nav-link" id="CButton">
+                        <a href="Reservation.rsv">
+                            <i class='bx bxs-chevron-down-circle icon'></i>
+                            <span class="text nav-text">Reservation</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link" id="CButton">
+                        <a href="o.lib">
+                            <i class='bx bxs-minus-circle icon' ></i>
+                            <span class="text nav-text">Liberation</span>
+                        </a>
+                    </li>
+                    <%}else if(user.getRole().getIdRole()==1){ %>
                     <li class="nav-link" id="CButton">
                         <a href="ChefDashBoard.jsp">
                             <i class='bx bxs-dashboard icon'></i>
@@ -43,12 +113,12 @@
                         </a>
                     </li>
                     <li class="nav-link" id="CButton">
-                        <a href="ChefProfil.jsp">
+                        <a href="Profil.jsp">
                             <i class='bx bx-user-circle icon' ></i>
-                            <span class="text nav-text">Profil</span>
+                            <span class="text nav-text">Profile</span>
                         </a>
                     </li>
-
+                    
                     <li class="nav-link" id="CButton">
                         <a href="Filiere.jsp">
                             <i class='bx bxs-compass icon' ></i>
@@ -68,142 +138,67 @@
                             <span class="text nav-text">Emploi du Temps</span>
                         </a>
                     </li>
+                    <%} %>
+                    <li class="nav-link" id="CButton">
+                        <a href="o.notif">
+                            <i class='bx bxs-bell icon'></i>
+                            <span class="text nav-text">Notifications</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
-
         </div>
-
     </nav>
-    <div class="home">
-     <div class="head"> 
+<div class="home">
+        <div class="head"> 
             
         <div class="notif">
             
+            
             <div><li class="nav-link">
-                <a href="">
-                    <i class='bx bxs-bell icon'></i>
-                    
-                </a>
-            </li>
-
-        </div>
-            <div><li class="nav-link">
-                <a href="">
+                <a href="hh.logout">
                     <i class='bx bx-log-out icon' ></i>
                     
                 </a>
             </li>
             </div>
         </div>
-  </div>
-<%
-    // Récupération des données de session
-    List<MatiereFiliereCategorie> mfcs = (List<MatiereFiliereCategorie>) session.getAttribute("mfcs");
-    MatiereFiliereCategorie selectedmfc = (MatiereFiliereCategorie) request.getAttribute("mfc");
-  
-    Integer selected = (Integer) session.getAttribute("selectedId");
-    List<Categorie> categories = (List<Categorie>) session.getAttribute("categories");
-    Integer categorieselected = (Integer) session.getAttribute("categorieselected");
-    Integer matiereselected = (Integer) session.getAttribute("matiereselected");
-   String jour = (String)  request.getAttribute("jour") ;
-    String heure =  (String) request.getAttribute("heure") ;
-%>
+       
+       <div class="user2">
+    <div class="icon-container">
+        <i class='bx bxs-user-circle icon1'></i>
+    </div>
+    <div class="form-container">
+        <form action="Profile.p" method="post">
+            <div class="form-group">
+                <input type="hidden" name="id" value="<%= user.getId() %>">
+                <label for="Nom">Nom :</label>
+                <input type="text" name="nom_user" placeholder="Entrez votre nom" value="<%= user.getNom().trim() %>" />
+            </div>
+            <div class="form-group">
+                <label for="Mot_de_passe">Mot de passe :</label>
+                <input type="text" name="mot_de_passe" placeholder="Entrez votre mot de passe" value="<%= user.getMdp() %>" />
+            </div>
+            <div class="btn-container">
+                <button type="submit" name="modifier">Modifier le profil</button>
+            </div>
+        </form>
+    </div>
+</div>
 
+<!-- <script>
+     
+        const button = document.getElementById('CButton');
 
-<p>Jour: <%= request.getAttribute("jour") %></p>
-<p>Heure: <%= request.getAttribute("heure") %></p>
-
-<!-- Affichage des erreurs -->
-<% if (request.getAttribute("errorMessage") != null) { %>
-    <div style="color: red;"><strong><%= request.getAttribute("errorMessage") %></strong></div>
-<% } %>
-
-<form action="emploi.em" method="post">
-    <label for="nom_matiere">Matière :</label>
-    <select name="nom_matiere" id="nom_matiere">
-        <option value="">-- Choisissez une matière --</option>
-        <% 
-        if (mfcs != null) {
-            Map<Integer, String> map = new HashMap<>();
-            for (MatiereFiliereCategorie mfc : mfcs) {
-                if (!map.containsKey(mfc.getMatiere().getId_matiere())) {
-                    map.put(mfc.getMatiere().getId_matiere(), mfc.getMatiere().getNom_matiere());
-                }
-            }
-            for (Map.Entry<Integer, String> entry : map.entrySet()) { 
-                Integer matiereId = entry.getKey();
-                String matiereNom = entry.getValue();
-        %>
-                <option value="<%= matiereId %>" 
-                    <%= matiereselected != null && matiereselected.equals(matiereId) ? "selected" : "" %>>
-                    <%= matiereNom %>
-                </option>
-        <% 
-            }
-        }
-        %>
-    </select>
-
-    <label for="nom_categorie">Catégorie :</label>
-    <select name="nom_categorie" id="nom_categorie">
-        <option value="">-- Choisissez une catégorie --</option>
-        <% if (categories != null) { %>
-            <% for (Categorie cat : categories) { %>
-                <option value="<%= cat.getId_categorie() %>"
-                    <%= categorieselected != null && categorieselected.equals(cat.getId_categorie()) ? "selected" : "" %>>
-                    <%= cat.getType_categorie() %>
-                </option>
-            <% } %>
-        <% } %>
-    </select>
-  <input type="hidden" name="jour" value="<%= request.getAttribute("jour") %>">
-  <input type="hidden" name="heure" value="<%= request.getAttribute("heure") %>">
-    <input type="hidden" name="selectedId" value="<%= selected != null ? selected : "" %>">
-    <input type="submit" name="action" value="RechercherMFC">
-</form>
-<form action="emploi.em" method="post">
-<% if (selectedmfc != null) { %>
-    <h3>Informations sélectionnées :</h3>
-    <p>Matière : 
-        <input type="text" name="matiere" value="<%= selectedmfc.getMatiere().getNom_matiere() %>" readonly>
-    </p>
-    <p>Catégorie : 
-        <input type="text" name="categorie" value="<%= selectedmfc.getCategorie().getType_categorie() %>" readonly>
-    </p>
-    <p>Charge Horaire : 
-        <input type="text" name="nbr-heure" value="<%= selectedmfc.getNbr_heure() %>" readonly>
-    </p>
-    <p>Professeur : 
-        <input type="text" name="prof" value="<%= selectedmfc.getProf().getNom() %>" readonly>
-    </p>
-
-   <p>La liste des Salles disponibles :(<%= selectedmfc.getCategorie().getType_categorie() %>)</p>
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+            document.querySelectorAll('').forEach(btn => {
+                if (btn !== button) btn.classList.remove('active');
+            });
+        });
     
-       <%
-    List<Salle> salles = (List<Salle>) request.getAttribute("salleselected");
-    if (salles == null) {
-        salles = (List<Salle>) session.getAttribute("salleselected");
-    }
-%>
-<% if (salles != null && !salles.isEmpty()) { %>
-    <% for (Salle s : salles) { %>
-        <label>
-            <input type="radio" name="salleselected" value="<%= s.getIdSalle() %>">
-            <%= s.getNomSalle() %> (Capacité: <%= s.getCapacite() %>) 
-        </label>
-        <br>
-    <% } %>
-<% } else { %>
-    <p>Aucune salle disponible.</p>
-<% } %>
-<input type="hidden" name="jour" value="<%= request.getAttribute("jour") %>">
-<input type="hidden" name="heure" value="<%= request.getAttribute("heure") %>">
-    <input type="hidden" name="selectedId" value="<%= selected != null ? selected : "" %>">
-    <input type="submit" name="action" value="Confirmer">
-</form>
-<% }else{ %>
-    <p>Aucune matière ou catégorie sélectionnée.</p>
-<%  }%>
+</script> -->
 
+<%} %>
 </body>
 </html>
