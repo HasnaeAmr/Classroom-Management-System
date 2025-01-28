@@ -33,8 +33,8 @@ public class EtatSalle implements Serializable{
     private boolean etat;
     
     @ManyToOne
-    @JoinColumn(name="id_prof", nullable = true)
-    private User prof;
+    @JoinColumn(name="matiere", nullable = true)
+    private MatiereFiliereCategorie matiere;
     
     public void setSalle(Salle salle) {
     	this.salle=salle;
@@ -64,10 +64,10 @@ public class EtatSalle implements Serializable{
     public void setEtatSalle(boolean e) {
     	this.etat=e;
     }
-    public void setProf(User prof) {
-    	this.prof=prof;
+    public void setMatiere(MatiereFiliereCategorie m) {
+    	this.matiere=m;
     }
-    public User getProf() {
-    	return prof;
+    public MatiereFiliereCategorie getMatiere() {
+    	return matiere;
     }
 }
