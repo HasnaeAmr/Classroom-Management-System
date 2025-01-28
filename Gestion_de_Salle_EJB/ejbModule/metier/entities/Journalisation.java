@@ -24,8 +24,7 @@ public class Journalisation {
 	public Journalisation(String description) {
 		LocalDate currentDate = LocalDate.now();
 		this.date=currentDate;
-
-		this.description=description + " à " + date;
+		this.description=description;
 	}
 	
 	public String getDescription() {
