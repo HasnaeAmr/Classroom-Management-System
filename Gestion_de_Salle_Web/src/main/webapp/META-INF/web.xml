@@ -18,6 +18,14 @@
   <servlet-name>fs</servlet-name>
   <url-pattern>*.fs</url-pattern>
  </servlet-mapping>
+<servlet>
+<servlet-name>journal</servlet-name>
+<servlet-class>web.Journalisation</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>journal</servlet-name>
+<url-pattern>*.journal</url-pattern>
+</servlet-mapping>
  <servlet>
   <servlet-name>MFC</servlet-name>
   <servlet-class>web.MatiereFiliereCategorie</servlet-class>
@@ -26,5 +34,4 @@
   <servlet-name>mfc</servlet-name>
   <url-pattern>*.do</url-pattern>
  </servlet-mapping>
-
 </web-app>
