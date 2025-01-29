@@ -18,6 +18,14 @@
   <servlet-name>fs</servlet-name>
   <url-pattern>*.fs</url-pattern>
  </servlet-mapping>
+ <servlet>
+  <servlet-name>gesal</servlet-name>
+  <servlet-class>web.GestionSalle</servlet-class>
+ </servlet>
+  <servlet-mapping>
+  <servlet-name>gesal</servlet-name>
+  <url-pattern>*.gesal</url-pattern>
+ </servlet-mapping>
 <servlet>
 <servlet-name>journal</servlet-name>
 <servlet-class>web.Journalisation</servlet-class>
