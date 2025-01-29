@@ -27,6 +27,14 @@
 <url-pattern>*.journal</url-pattern>
 </servlet-mapping>
  <servlet>
+<servlet-name>notif</servlet-name>
+<servlet-class>web.Notification</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>notif</servlet-name>
+<url-pattern>*.notif</url-pattern>
+</servlet-mapping>
+ <servlet>
   <servlet-name>MFC</servlet-name>
   <servlet-class>web.MatiereFiliereCategorie</servlet-class>
  </servlet>
