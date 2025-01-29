@@ -35,6 +35,15 @@
 <url-pattern>*.notif</url-pattern>
 </servlet-mapping>
  <servlet>
+  <servlet-name>p</servlet-name>
+  <servlet-class>web.ProfileServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+  <servlet-name>p</servlet-name>
+  <url-pattern>*.p</url-pattern>
+ </servlet-mapping>
+<servlet>
+ <servlet>
   <servlet-name>MFC</servlet-name>
   <servlet-class>web.MatiereFiliereCategorie</servlet-class>
  </servlet>
